@@ -15,7 +15,7 @@ on:
 
 jobs:
   token-thing:
-    environment: test
+    environment: ${{ github.event.inputs.customer }}
     runs-on: ubuntu-latest
     steps:
         - name: Check if TOKEN is empty
