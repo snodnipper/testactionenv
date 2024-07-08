@@ -14,14 +14,33 @@ on:
           - "Test"
 
 jobs:
-  echo-customer:
-    runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.customer }}
-    steps:
-      - name: Echo customer and environment variable
-        env:
-          ENV_VAR: ${{ secrets.SECRET_DESCRIPTION }}
-        run: |
-          echo "Customer: ${{ github.event.inputs.customer }}"
-          echo "Environment Variable: $ENV_VAR"
+  call-workflow-passing-data-apple:
+    if: ${{ github.event.inputs.customer == 'Apple' }}
+    uses: ./.github/workflows/deploy.yml
+    with:
+      SITE_NAME: "apple location 1"
+      ACCOUNT: "account 1"
+      RESOURCE_GROUP: "azure-rg-1"
+    secrets:
+      TOKEN: ${{ secrets.AZURE_TOKEN }}
+
+  call-workflow-passing-data-tesla:
+    if: ${{ github.event.inputs.customer == 'Tesla' }}
+    uses: ./.github/workflows/deploy.yml
+    with:
+      SITE_NAME: "tesla location 1"
+      ACCOUNT: "account 1"
+      RESOURCE_GROUP: "azure-rg-1"
+    secrets:
+      TOKEN: ${{ secrets.AZURE_TOKEN }}
+
+  call-workflow-passing-data-test:
+    if: ${{ github.event.inputs.customer == 'Test' }}
+    uses: ./.github/workflows/deploy.yml
+    with:
+      SITE_NAME: "test location 1"
+      ACCOUNT: "account 1"
+      RESOURCE_GROUP: "azure-rg-1"
+    secrets:
+      TOKEN: ${{ secrets.AZURE_TOKEN }}
 

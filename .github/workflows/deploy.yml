@@ -1,0 +1,36 @@
+name: Deploy to Customer
+
+on:
+  workflow_call:
+    inputs:
+      SITE_NAME:
+        required: true
+        type: string
+      ACCOUNT:
+        required: true
+        type: string
+      RESOURCE_GROUP:
+        required: true
+        type: string
+    secrets:
+      TOKEN:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy with received values
+        run: |
+          SITE_NAME="${{ inputs.SITE_NAME }}"
+          ACCOUNT="${{ inputs.ACCOUNT }}"
+          RESOURCE_GROUP="${{ inputs.RESOURCE_GROUP }}"
+          TOKEN="${{ secrets.TOKEN }}"
+
+          echo "Deploying to:"
+          echo "  Site Name: $SITE_NAME"
+          echo "  Account: $ACCOUNT"
+          echo "  Resource Group: $RESOURCE_GROUP"
+          echo "  Token: $TOKEN"
+
+          # Add your deployment steps here
