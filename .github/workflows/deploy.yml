@@ -31,6 +31,4 @@ jobs:
           echo "  Site Name: $SITE_NAME"
           echo "  Account: $ACCOUNT"
           echo "  Resource Group: $RESOURCE_GROUP"
-          echo "  Token: $TOKEN"
-
-          # Add your deployment steps here
+          echo "  Token Length: ${#TOKEN}"
