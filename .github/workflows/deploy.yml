@@ -20,36 +20,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if TOKEN is empty
+      - name: Deploy with received values
         run: |
           SITE_NAME="${{ inputs.SITE_NAME }}"
           ACCOUNT="${{ inputs.ACCOUNT }}"
           RESOURCE_GROUP="${{ inputs.RESOURCE_GROUP }}"
           TOKEN="${{ secrets.TOKEN }}"
 
-          if [ -z "${TOKEN}" ]; then
-          echo "TOKEN is empty or not set"
-          else
-          echo "TOKEN is set"
-          echo "Token Length: ${#TOKEN}"
-          fi
-
           echo "Deploying to:"
           echo "  Site Name: $SITE_NAME"
           echo "  Account: $ACCOUNT"
           echo "  Resource Group: $RESOURCE_GROUP"
-          echo "  Token Length: ${#TOKEN}"          
-        env:
-          TOKEN: ${{ secrets.AZURE_TOKEN }}
+          if [ -z "${TOKEN}" ]; then
+            echo "TOKEN is empty or not set"
+          else
+            echo "TOKEN is set"
+            echo "  Token Length: ${#TOKEN}"
+          fi
 
-
-# SITE_NAME="${{ inputs.SITE_NAME }}"
-# ACCOUNT="${{ inputs.ACCOUNT }}"
-# RESOURCE_GROUP="${{ inputs.RESOURCE_GROUP }}"
-# TOKEN="${{ secrets.TOKEN }}"
-
-# echo "Deploying to:"
-# echo "  Site Name: $SITE_NAME"
-# echo "  Account: $ACCOUNT"
-# echo "  Resource Group: $RESOURCE_GROUP"
-# echo "  Token Length: ${#TOKEN}"
+          # Add your deployment steps here
