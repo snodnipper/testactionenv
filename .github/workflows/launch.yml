@@ -35,6 +35,7 @@ jobs:
       SITE_NAME: "apple location 1"
       ACCOUNT: "account 1"
       RESOURCE_GROUP: "azure-rg-1"
+      ENVIRONMENT: ${{ github.event.inputs.customer }}
     secrets:
       TOKEN: ${{ secrets.AZURE_TOKEN }}
 
@@ -45,6 +46,7 @@ jobs:
       SITE_NAME: "tesla location 1"
       ACCOUNT: "account 1"
       RESOURCE_GROUP: "azure-rg-1"
+      ENVIRONMENT: ${{ github.event.inputs.customer }}
     secrets:
       TOKEN: ${{ secrets.AZURE_TOKEN }}
 
@@ -55,6 +57,7 @@ jobs:
       SITE_NAME: "test location 1"
       ACCOUNT: "account 1"
       RESOURCE_GROUP: "azure-rg-1"
+      ENVIRONMENT: ${{ github.event.inputs.customer }}
     secrets:
       TOKEN: ${{ secrets.AZURE_TOKEN }}
 

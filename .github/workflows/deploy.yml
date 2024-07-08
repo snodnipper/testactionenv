@@ -12,12 +12,16 @@ on:
       RESOURCE_GROUP:
         required: true
         type: string
+      ENVIRONMENT:
+        required: true
+        type: string        
     secrets:
       TOKEN:
         required: true
 
 jobs:
   deploy:
+    environment: ${{ inputs.ENVIRONMENT }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy with received values
