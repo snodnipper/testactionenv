@@ -19,7 +19,9 @@ jobs:
     steps:
         - name: Token length
           run: |
-           echo "Token Length: ${#${{ secrets.AZURE_TOKEN }}}"
+           echo "Token Length: ${#TOKEN}"
+          env:
+            TOKEN: ${{ secrets.AZURE_TOKEN }}
   call-workflow-passing-data-apple:
     if: ${{ github.event.inputs.customer == 'Apple' }}
     uses: ./.github/workflows/deploy.yml
