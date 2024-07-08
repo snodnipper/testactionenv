@@ -7,7 +7,7 @@ on:
         required: true
         type: choice
         description: Select customer to deploy
-        default: "Test"
+        default: "Apple"
         options:
           - "Apple"
           - "Tesla"
