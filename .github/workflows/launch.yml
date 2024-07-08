@@ -17,11 +17,29 @@ jobs:
   token-thing:
     runs-on: ubuntu-latest
     steps:
-        - name: Token length
+        - name: Check if TOKEN is empty
           run: |
-           echo "Token Length: ${#TOKEN}"
+            if [ -z "${TOKEN}" ]; then
+            echo "TOKEN is empty or not set"
+            else
+            echo "TOKEN is set"
+            echo "Token Length: ${#TOKEN}"
+            fi
           env:
             TOKEN: ${{ secrets.AZURE_TOKEN }}
+#   token-thing2:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check if TOKEN is empty
+#         run: |
+#           if [ -z "${TOKEN}" ]; then
+#             echo "TOKEN is empty or not set"
+#           else
+#             echo "TOKEN is set"
+#             echo "Token Length: ${#TOKEN}"
+#           fi
+#         env:
+#           TOKEN: ${{ secrets.AZURE_TOKEN }}
   call-workflow-passing-data-apple:
     if: ${{ github.event.inputs.customer == 'Apple' }}
     uses: ./.github/workflows/deploy.yml
