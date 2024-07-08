@@ -1,0 +1,22 @@
+name: Deploy to Customer (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      customer:
+        required: true
+        type: choice
+        description: Select customer to deploy
+        default: "Test"
+        options:
+          - "Apple"
+          - "Tesla"
+          - "Test"
+
+jobs:
+  echo-customer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo name
+        run: |
+          echo "Site input: ${{ github.event.inputs.customer }}"  # Corrected the syntax to fetch the input value
