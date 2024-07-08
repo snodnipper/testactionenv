@@ -16,7 +16,12 @@ on:
 jobs:
   echo-customer:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.customer }}
     steps:
-      - name: Echo name
+      - name: Echo customer and environment variable
+        env:
+          ENV_VAR: ${{ secrets.SECRET_DESCRIPTION }}
         run: |
-          echo "Site input: ${{ github.event.inputs.customer }}"  # Corrected the syntax to fetch the input value
+          echo "Customer: ${{ github.event.inputs.customer }}"
+          echo "Environment Variable: $ENV_VAR"
+
